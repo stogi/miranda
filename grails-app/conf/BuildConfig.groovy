@@ -49,7 +49,13 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        test "org.spockframework:spock-grails-support:0.7-groovy-2.0"
+        compile 'org.ccil.cowan.tagsoup:tagsoup:1.2'
+        compile('org.codehaus.groovy.modules.http-builder:http-builder:0.5.2') {
+            excludes 'groovy', 'httpclient'
+        }
+
+        test 'co.freeside:betamax:1.1.2'
+        test 'org.spockframework:spock-grails-support:0.7-groovy-2.0'
     }
 
     plugins {
