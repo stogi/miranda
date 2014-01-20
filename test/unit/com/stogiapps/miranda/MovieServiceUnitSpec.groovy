@@ -2,8 +2,8 @@ package com.stogiapps.miranda
 
 import co.freeside.betamax.Betamax
 import co.freeside.betamax.Recorder
-import co.freeside.betamax.TapeMode
 import grails.test.mixin.TestFor
+import org.ccil.cowan.tagsoup.Parser
 import org.junit.Rule
 import spock.lang.Specification
 
@@ -12,6 +12,13 @@ class MovieServiceUnitSpec extends Specification {
 
     @Rule
     Recorder recorder = new Recorder()
+
+    void setup() {
+        defineBeans {
+            parser(Parser)
+            slurper(XmlSlurper, ref('parser'))
+        }
+    }
 
     @Betamax(tape = 'sample')
     void 'finds new available movies'() {
