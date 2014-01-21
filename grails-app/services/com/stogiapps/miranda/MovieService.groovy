@@ -7,9 +7,11 @@ class MovieService {
     List<Torrent> findNewTorrents() {
         def torrents = []
 
-        new TorrentzPage(slurper).findLatestMovies().each { TorrentzPage page ->
-            torrents << new Torrent(magnetLink: page.pirateBayPage.magnetLink)
-        }
+        new TorrentzSearchPage(slurper)
+            .findBy(['1080p', 'bluray', 'dts', 'publichd', 'size > 6g', 'added:1d'])
+            .each { TorrentzSearchResultPage searchResultPage ->
+                torrents << new Torrent(magnetLink: searchResultPage.pirateBayPage.magnetLink)
+            }
 
         torrents
     }

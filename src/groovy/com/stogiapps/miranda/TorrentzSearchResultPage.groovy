@@ -2,39 +2,31 @@ package com.stogiapps.miranda
 
 import groovyx.net.http.URIBuilder
 
-class TorrentzSearchResultPage {
+class TorrentzSearchResultPage extends TorrentzPage {
 
-    static String URL = 'http://torrentz-proxy.com'
-
-    XmlSlurper slurper
     String pageUrl
 
-    TorrentzSearchResultPage(XmlSlurper slurper, String pageUrl = '/search') {
-        this.slurper = slurper
+    TorrentzSearchResultPage(XmlSlurper slurper, String pageUrl) {
+        super(slurper)
         this.pageUrl = pageUrl
     }
 
     PirateBayPage getPirateBayPage() {
-        def path = slurper.parse(buildTorrentUrl())
-        def link = path.'**'
-            .findAll(isTorrentzLink)
-            .find(isPirateBayLink)
+        def link = getAllElements(buildTorrentUrl())
+            .findAll { isTorrentzLink(it) }
+            .find { isPirateBayLink(it) }
             .@href.toString()
         new PirateBayPage(slurper, link)
     }
 
     private String buildTorrentUrl() {
-        new URIBuilder(URL)
+        new URIBuilder(url)
             .setPath(pageUrl)
             .toString()
     }
 
-    private isTorrentzLink = { node ->
-        node.name() == 'a' && node.parent().name() == 'dt'
-    }
-
-    private isPirateBayLink = { node ->
-        isTorrentzLink(node) &&  node.@href.toString().contains('baymirror.com')
+    private boolean isPirateBayLink(node) {
+        node.@href.toString().contains('baymirror.com')
     }
 
 }
