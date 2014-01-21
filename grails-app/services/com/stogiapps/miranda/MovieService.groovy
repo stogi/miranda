@@ -2,6 +2,8 @@ package com.stogiapps.miranda
 
 class MovieService {
 
+    static transactional = false
+
     XmlSlurper slurper
 
     List<Torrent> findNewTorrents() {

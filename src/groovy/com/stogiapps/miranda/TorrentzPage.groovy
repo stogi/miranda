@@ -1,21 +1,15 @@
 package com.stogiapps.miranda
 
-class TorrentzPage {
+class TorrentzPage extends AbstractPage {
 
     String url = 'http://torrentz-proxy.com'
 
-    XmlSlurper slurper
-
     TorrentzPage(XmlSlurper slurper) {
-        this.slurper = slurper
+        super(slurper)
     }
 
-    protected boolean isTorrentzLink(node) {
-        node.name() == 'a' && node.parent().name() == 'dt'
-    }
-
-    protected getAllElements(url) {
-        slurper.parse(url).'**'
+    protected boolean isTorrentzLink(element) {
+        element.name() == 'a' && element.parent().name() == 'dt'
     }
 
 }
