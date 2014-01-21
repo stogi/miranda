@@ -13,7 +13,8 @@ class TorrentUnitSpec extends Specification {
 
     @Unroll
     void 'magnetLink is required'() {
-        Torrent torrent = new Torrent(magnetLink: magnetLink)
+        given:
+        def torrent = new Torrent(magnetLink: magnetLink)
 
         expect:
         !torrent.validate()
@@ -21,5 +22,17 @@ class TorrentUnitSpec extends Specification {
 
         where:
         magnetLink << [null, '', ' ']
+    }
+
+    void 'magnetLink is unique'() {
+        given:
+        new Torrent(magnetLink: 'magnet:url').save(flush: true)
+
+        and:
+        def torrent = new Torrent(magnetLink: 'magnet:url')
+
+        expect:
+        !torrent.validate()
+        torrent.errors.magnetLink == 'unique'
     }
 }
