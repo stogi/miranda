@@ -1,7 +1,6 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <title>Miranda</title>
+    <meta name="layout" content="main">
 </head>
 <body>
     <h1>Hi! I'm Miranda</h1>
