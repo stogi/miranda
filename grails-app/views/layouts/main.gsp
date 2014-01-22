@@ -17,9 +17,11 @@
 
 <body>
 
-<div id="wrap">
+<header>
     <g:render template="/nav"/>
+</header>
 
+<div id="wrap">
     <div class="container">
         <g:layoutBody/>
     </div>
