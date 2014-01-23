@@ -21,11 +21,11 @@
     <g:render template="/nav"/>
 </header>
 
-<div id="wrap">
+<section id="wrap">
     <div class="container">
         <g:layoutBody/>
     </div>
-</div>
+</section>
 
 <footer id="footer">
     <div class="container">

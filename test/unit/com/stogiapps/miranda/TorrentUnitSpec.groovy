@@ -17,7 +17,7 @@ class TorrentUnitSpec extends Specification {
         def torrent = new Torrent(magnetLink: magnetLink)
 
         expect:
-        !torrent.validate()
+        !torrent.validate(['magnetLink'])
         torrent.errors.magnetLink == 'nullable'
 
         where:
@@ -32,7 +32,8 @@ class TorrentUnitSpec extends Specification {
         def torrent = new Torrent(magnetLink: 'magnet:url')
 
         expect:
-        !torrent.validate()
+        !torrent.validate(['magnetLink'])
         torrent.errors.magnetLink == 'unique'
     }
+
 }

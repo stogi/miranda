@@ -61,6 +61,7 @@ grails.project.dependency.resolution = {
     plugins {
         build ':tomcat:7.0.50'
 
+        compile ':build-test-data:2.0.10'
         compile ':mongodb:1.3.3'
         compile ':scaffolding:2.0.1'
         compile ':webxml:1.4.1'

@@ -7,4 +7,5 @@ class Torrent {
     static constraints = {
         magnetLink(unique: true)
     }
+
 }
