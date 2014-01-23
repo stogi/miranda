@@ -4,8 +4,12 @@ class Torrent {
 
     String magnetLink
 
+    Torrent(String magnetLink) {
+        this.magnetLink = magnetLink
+    }
+
     static constraints = {
-        magnetLink(unique: true)
+        magnetLink(blank: false, unique: true)
     }
 
 }

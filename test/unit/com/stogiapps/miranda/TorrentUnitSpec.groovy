@@ -11,25 +11,34 @@ class TorrentUnitSpec extends Specification {
         mockForConstraintsTests(Torrent)
     }
 
-    @Unroll
-    void 'magnetLink is required'() {
+    void 'magnetLink can not be null'() {
         given:
-        def torrent = new Torrent(magnetLink: magnetLink)
+        def torrent = new Torrent()
 
         expect:
         !torrent.validate(['magnetLink'])
         torrent.errors.magnetLink == 'nullable'
+    }
+
+    @Unroll
+    void 'magnetLink can not be blank'() {
+        given:
+        def torrent = new Torrent(magnetLink)
+
+        expect:
+        !torrent.validate(['magnetLink'])
+        torrent.errors.magnetLink == 'blank'
 
         where:
-        magnetLink << [null, '', ' ']
+        magnetLink << ['', ' ']
     }
 
     void 'magnetLink is unique'() {
         given:
-        new Torrent(magnetLink: 'magnet:url').save(flush: true)
+        new Torrent('magnet:url').save(flush: true)
 
         and:
-        def torrent = new Torrent(magnetLink: 'magnet:url')
+        def torrent = new Torrent('magnet:url')
 
         expect:
         !torrent.validate(['magnetLink'])
