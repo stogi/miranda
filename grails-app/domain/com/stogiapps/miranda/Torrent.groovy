@@ -2,23 +2,27 @@ package com.stogiapps.miranda
 
 class Torrent {
 
+    static DISPLAY_NAME_REGEXP = /.*dn=([^&]+).*/
+
     String magnetLink
-//    String name
+    String name
 
     Torrent(String magnetLink) {
         this.magnetLink = magnetLink
+        name = extractNameFromMagnetLink()
     }
 
     static constraints = {
-        magnetLink(blank: false, matches: /.*dn=[^&]+.*/, unique: true)
+        magnetLink(blank: false, matches: DISPLAY_NAME_REGEXP, unique: true)
     }
-
-//    def beforeInsert() {
-//        name = extractNameFromMagnetLink()
-//    }
 
     private String extractNameFromMagnetLink() {
         String displayName = extractDisplayNameFromMagnetLink()
+
+        if (!displayName) {
+            return null
+        }
+
         def parts = displayName.split('\\.')
 
         int index = 1
@@ -33,7 +37,14 @@ class Torrent {
     }
 
     private String extractDisplayNameFromMagnetLink() {
-        (magnetLink =~ /dn=([^&]*)&/)[0][1]
+        String displayName = null
+
+        def matcher = magnetLink =~ DISPLAY_NAME_REGEXP
+        if (matcher.matches()) {
+            displayName = matcher[0][1]
+        }
+
+        displayName
     }
 
     private boolean isReleaseYear(String part) {

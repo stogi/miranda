@@ -1,7 +1,6 @@
 package com.stogiapps.miranda
 
 import grails.test.mixin.TestFor
-import spock.lang.Ignore
 import spock.lang.Specification
 import spock.lang.Unroll
 
@@ -17,8 +16,9 @@ class TorrentUnitSpec extends Specification {
         def torrent = new Torrent()
 
         expect:
-        !torrent.validate(['magnetLink'])
+        !torrent.validate()
         torrent.errors.magnetLink == 'nullable'
+        torrent.errors.name == 'nullable'
     }
 
     @Unroll
@@ -27,8 +27,9 @@ class TorrentUnitSpec extends Specification {
         def torrent = new Torrent(magnetLink)
 
         expect:
-        !torrent.validate(['magnetLink'])
+        !torrent.validate()
         torrent.errors.magnetLink == 'blank'
+        torrent.errors.name == 'nullable'
 
         where:
         magnetLink << ['', ' ']
@@ -39,8 +40,9 @@ class TorrentUnitSpec extends Specification {
         def torrent = new Torrent('magnet:url')
 
         expect:
-        !torrent.validate(['magnetLink'])
+        !torrent.validate()
         torrent.errors.magnetLink == 'matches'
+        torrent.errors.name == 'nullable'
     }
 
     void 'magnetLink is unique'() {
@@ -54,21 +56,21 @@ class TorrentUnitSpec extends Specification {
         def torrent = new Torrent(magnetLink)
 
         expect:
-        !torrent.validate(['magnetLink'])
+        !torrent.validate()
         torrent.errors.magnetLink == 'unique'
+        !torrent.errors.name
     }
 
-    @Ignore
     @Unroll
     void 'sets name based on magnetLink dn (display name) field'() {
         given:
-        def torrent = new Torrent(magnetLink).save()
+        def torrent = new Torrent(magnetLink)
 
         expect:
-        torrent.name == name
+        torrent.name == expectedName
 
         where:
-        name          | magnetLink
+        expectedName  | magnetLink
         'Avengers'    | 'magnet:?xt=urn:btih:e382bea15e896a2ffd999d041a3e9171e9cbfd6e&dn=Avengers.2012.1080p.BluRay.DTS-HD.MA.7.1.x264-PublicHD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
         'Escape Plan' | 'magnet:?xt=urn:btih:e382bea15e896a2ffd999d041a3e9171e9cbfd6e&dn=Escape.Plan.2013.1080p.BluRay.DTS-HD.MA.7.1.x264-PublicHD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
         '2012'        | 'magnet:?xt=urn:btih:e382bea15e896a2ffd999d041a3e9171e9cbfd6e&dn=2012.2009.1080p.BluRay.DTS-HD.MA.7.1.x264-PublicHD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
