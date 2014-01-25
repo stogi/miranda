@@ -18,22 +18,23 @@ class Torrent {
 
     private String extractNameFromMagnetLink() {
         String displayName = extractDisplayNameFromMagnetLink()
+        String name = null
 
-        if (!displayName) {
-            return null
-        }
+        if (displayName) {
+            def parts = displayName.split('\\.')
 
-        def parts = displayName.split('\\.')
-
-        int index = 1
-        while (index < parts.size()) {
-            if (isReleaseYear(parts[index])) {
-                break
+            int index = 1
+            while (index < parts.size()) {
+                if (isReleaseYear(parts[index])) {
+                    break
+                }
+                index++
             }
-            index++
+
+            name = parts[0..index - 1].join(' ')
         }
 
-        parts[0..index - 1].join(' ')
+        name
     }
 
     private String extractDisplayNameFromMagnetLink() {
