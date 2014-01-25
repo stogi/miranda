@@ -12,7 +12,7 @@ class MovieService {
         new TorrentzSearchPage(slurper)
             .findBy(['1080p', 'bluray', 'dts', 'publichd', 'size > 6g', 'added:1d'])
             .each { TorrentzSearchResultPage searchResultPage ->
-                torrents << new Torrent(magnetLink: searchResultPage.pirateBayPage.magnetLink)
+                torrents << new Torrent(searchResultPage.pirateBayPage.magnetLink)
             }
 
         torrents

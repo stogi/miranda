@@ -15,9 +15,9 @@ class LatestContentServiceUnitSpec extends Specification {
         service.movieService = movieService
 
         movieService.findNewTorrents() >> [
-            new Torrent(magnetLink: 'magnet:url1'),
-            new Torrent(magnetLink: 'magnet:url2'),
-            new Torrent(magnetLink: 'magnet:url3')
+            new Torrent('magnet:?dn=1'),
+            new Torrent('magnet:?dn=2'),
+            new Torrent('magnet:?dn=3')
         ]
     }
 
@@ -31,7 +31,7 @@ class LatestContentServiceUnitSpec extends Specification {
 
     void 'saves only new torrents'() {
         given:
-        new Torrent(magnetLink: 'magnet:url1').save()
+        new Torrent('magnet:?dn=1').save()
 
         expect:
         Torrent.count() == 1
