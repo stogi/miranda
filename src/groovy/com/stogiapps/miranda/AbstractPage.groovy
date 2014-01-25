@@ -1,15 +1,13 @@
 package com.stogiapps.miranda
 
-class AbstractPage {
+import org.jsoup.Jsoup
 
-    XmlSlurper slurper
+abstract class AbstractPage {
 
-    AbstractPage(XmlSlurper slurper) {
-        this.slurper = slurper
+    protected getDocument() {
+        Jsoup.connect(url).get()
     }
 
-    protected getAllElements(url) {
-        slurper.parse(url).'**'
-    }
+    abstract protected String getUrl()
 
 }

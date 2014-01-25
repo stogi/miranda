@@ -49,9 +49,9 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        compile 'org.ccil.cowan.tagsoup:tagsoup:1.2'
-        compile('org.codehaus.groovy.modules.http-builder:http-builder:0.5.2') {
-            excludes 'groovy', 'httpclient'
+        compile 'org.jsoup:jsoup:1.7.3'
+        compile('org.codehaus.groovy.modules.http-builder:http-builder:0.6') {
+            excludes 'groovy'
         }
 
         test 'co.freeside:betamax:1.1.2'

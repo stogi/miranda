@@ -4,13 +4,11 @@ class MovieService {
 
     static transactional = false
 
-    XmlSlurper slurper
-
     List<Torrent> findNewTorrents() {
         def torrents = []
 
-        new TorrentzSearchPage(slurper)
-            .findBy(['1080p', 'bluray', 'dts', 'publichd', 'size > 6g', 'added:1d'])
+        new TorrentzSearchPage(query: ['1080p', 'bluray', 'dts', 'publichd', 'size > 6g', 'added:7d'])
+            .search()
             .each { TorrentzSearchResultPage searchResultPage ->
                 torrents << new Torrent(searchResultPage.pirateBayPage.magnetLink)
             }

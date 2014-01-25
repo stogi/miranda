@@ -4,19 +4,18 @@ class PirateBayPage extends AbstractPage {
 
     String pageUrl
 
-    PirateBayPage(XmlSlurper slurper, String pageUrl) {
-        super(slurper)
+    PirateBayPage(String pageUrl) {
         this.pageUrl = pageUrl
     }
 
     String getMagnetLink() {
-        getAllElements(pageUrl)
-            .find { isMagnetLink(it) }
-            .@href.toString()
+        document.select('.download a')
+            .first().attr('href')
     }
 
-    private boolean isMagnetLink(element) {
-        element.name() == 'a' && element.parent().@class == 'download' && element.@href.toString().startsWith('magnet')
+    @Override
+    protected String getUrl() {
+        pageUrl
     }
 
 }

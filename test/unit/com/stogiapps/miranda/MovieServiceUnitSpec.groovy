@@ -13,19 +13,12 @@ class MovieServiceUnitSpec extends Specification {
     @Rule
     Recorder recorder = new Recorder()
 
-    void setup() {
-        defineBeans {
-            parser(Parser)
-            slurper(XmlSlurper, ref('parser'))
-        }
-    }
-
     @Betamax(tape = 'sample')
     void 'finds new available movies'() {
         when:
         List<Torrent> torrents = service.findNewTorrents()
 
         then:
-        torrents.size() == 1
+        torrents.size() == 12
     }
 }

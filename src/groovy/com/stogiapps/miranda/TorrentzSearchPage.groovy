@@ -4,18 +4,16 @@ import groovyx.net.http.URIBuilder
 
 class TorrentzSearchPage extends TorrentzPage {
 
-    TorrentzSearchPage(XmlSlurper slurper) {
-        super(slurper)
+    List<String> query
+
+    List<TorrentzSearchResultPage> search() {
+        document.select('.results dt a')
+            .collect { new TorrentzSearchResultPage(it.attr('href')) }
     }
 
-    List<TorrentzSearchResultPage> findBy(query) {
-        getAllElements(buildSearchUrl(query))
-            .findAll { isTorrentzLink(it) }
-            .collect { new TorrentzSearchResultPage(slurper, it.@href.toString()) }
-    }
-
-    private String buildSearchUrl(List<String> query) {
-        new URIBuilder(url)
+    @Override
+    protected String getUrl() {
+        new URIBuilder(super.url)
             .setPath('/search')
             .setQuery(f: query.join(' '))
             .toString()

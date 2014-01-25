@@ -1,32 +1,32 @@
 package com.stogiapps.miranda
 
 import groovyx.net.http.URIBuilder
+import org.jsoup.nodes.Node
 
 class TorrentzSearchResultPage extends TorrentzPage {
 
     String pageUrl
 
-    TorrentzSearchResultPage(XmlSlurper slurper, String pageUrl) {
-        super(slurper)
+    TorrentzSearchResultPage(String pageUrl) {
         this.pageUrl = pageUrl
     }
 
     PirateBayPage getPirateBayPage() {
-        def link = getAllElements(buildTorrentUrl())
-            .findAll { isTorrentzLink(it) }
+        def link = document.select('.download dt a')
             .find { isPirateBayLink(it) }
-            .@href.toString()
-        new PirateBayPage(slurper, link)
+            .attr('href')
+        new PirateBayPage(link)
     }
 
-    private String buildTorrentUrl() {
-        new URIBuilder(url)
+    @Override
+    protected String getUrl() {
+        new URIBuilder(super.url)
             .setPath(pageUrl)
             .toString()
     }
 
-    private boolean isPirateBayLink(node) {
-        node.@href.toString().contains('baymirror.com')
+    private boolean isPirateBayLink(Node node) {
+        node.attr('href').contains('baymirror.com')
     }
 
 }
