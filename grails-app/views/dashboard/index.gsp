@@ -16,7 +16,7 @@
             <tbody>
                 <g:each in="${movies}" var="movie">
                 <tr>
-                    <td>${movie.title}</td>
+                    <td>${movie.name}</td>
                     <td><a href="${movie.magnetLink}"><i class="glyphicon glyphicon-magnet"></i></a></td>
                 </tr>
                 </g:each>

@@ -2,18 +2,18 @@ package com.stogiapps.miranda
 
 class MovieService {
 
-    static transactional = false
+    List<Torrent> findLatest() {
+        latestTorrents.findAll { Torrent torrent ->
+            torrent.save()
+        }
+    }
 
-    List<Torrent> findNewTorrents() {
-        def torrents = []
-
-        new TorrentzSearchPage(query: ['1080p', 'bluray', 'dts', 'publichd', 'size > 6g', 'added:7d'])
+    private getLatestTorrents() {
+        new TorrentzSearchPage(query: ['1080p', 'bluray', 'dts', 'publichd', 'size > 6g', 'size < 20g', 'added:1d'])
             .search()
-            .each { TorrentzSearchResultPage searchResultPage ->
-                torrents << new Torrent(searchResultPage.pirateBayPage.magnetLink)
+            .collect { TorrentzSearchResultPage searchResultPage ->
+                new Torrent(searchResultPage.pirateBayPage.magnetLink)
             }
-
-        torrents
     }
 
 }
