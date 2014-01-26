@@ -115,3 +115,9 @@ log4j = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+uTorrent {
+    url = 'http://127.0.0.1:44822'
+    username = 'admin'
+    password = 'P@$$w0rd'
+}
