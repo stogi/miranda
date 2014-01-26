@@ -1,8 +1,6 @@
 Refactoring:
-* Get rid of LatestContentService.
 
 Functionality:
-- Quartz job for finding new movies.
 - Sending magnet links to uTorrent server.
 - Admin authentication account.
 - Adding TV shows to watch and download.

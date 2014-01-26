@@ -65,6 +65,7 @@ grails.project.dependency.resolution = {
         compile ':mongodb:1.3.3'
         compile ':scaffolding:2.0.1'
         compile ':webxml:1.4.1'
+        compile ':quartz:1.0.1'
 
         test(':spock:0.7') {
             exclude 'spock-grails-support'
