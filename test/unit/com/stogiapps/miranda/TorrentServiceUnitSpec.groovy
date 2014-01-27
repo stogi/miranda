@@ -5,8 +5,8 @@ import spock.lang.Ignore
 import spock.lang.Specification
 
 @Ignore
-@TestFor(UTorrentWebApiService)
-class UTorrentWebApiServiceUnitSpec extends Specification {
+@TestFor(TorrentService)
+class TorrentServiceUnitSpec extends Specification {
 
     void setup() {
         config.uTorrent.url = 'http://127.0.0.1:44822'

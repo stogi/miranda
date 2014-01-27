@@ -2,7 +2,7 @@ package com.stogiapps.miranda
 
 import groovyx.net.http.HTTPBuilder
 
-class UTorrentWebApiService {
+class TorrentService {
 
     def grailsApplication
 

@@ -10,14 +10,17 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Magnet</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
                 <g:each in="${movies}" var="movie">
                 <tr>
                     <td>${movie.name}</td>
-                    <td><a href="${movie.magnetLink}"><i class="glyphicon glyphicon-magnet"></i></a></td>
+                    <td>
+                        <a href="${movie.magnetLink}"><i class="glyphicon glyphicon-magnet"></i></a>
+                        <a href="${g.createLink(action: 'download', id: movie.id)}"><i class="glyphicon glyphicon-download"></i></a>
+                    </td>
                 </tr>
                 </g:each>
             </tbody>
