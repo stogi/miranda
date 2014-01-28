@@ -8,11 +8,11 @@ import spock.lang.Specification
 @Build(Torrent)
 class DashboardControllerUnitSpec extends Specification {
 
-    TorrentService uTorrentWebApiService
+    TorrentService torrentService
 
     void setup() {
-        uTorrentWebApiService = Mock(TorrentService)
-        controller.torrentWebApiService = uTorrentWebApiService
+        torrentService = Mock(TorrentService)
+        controller.torrentService = torrentService
     }
 
     void 'puts latest torrents in model'() {
@@ -41,7 +41,7 @@ class DashboardControllerUnitSpec extends Specification {
         controller.download()
 
         then:
-        1 * uTorrentWebApiService.download(torrent)
+        1 * torrentService.download(torrent)
 
         and:
         response.redirectedUrl == '/'
