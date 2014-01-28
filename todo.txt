@@ -1,7 +1,17 @@
 Refactoring:
 
 Functionality:
-* Sending magnet links to uTorrent server.
-- Admin authentication account.
 - Adding TV shows to watch and download.
 - Checking for new TV shows.
+- Admin authentication account.
+
+Go Live:
+- Install Tomcat7 server on mini.
+- Install MongoDB server on mini.
+- Point to uTorrent API on mini.
+
+Deployment Improvements:
+- Redirect miranda hostname to Tomcat7 root context.
+
+When HTPC is build:
+- Install Docker and use it for deployment.
