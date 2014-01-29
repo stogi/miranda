@@ -6,9 +6,6 @@ Functionality:
 - Admin authentication account.
 
 Go Live:
-- Install Tomcat7 server on mini.
-- Install MongoDB server on mini.
-- Point to uTorrent API on mini.
 
 Deployment Improvements:
 - Redirect miranda hostname to Tomcat7 root context.
