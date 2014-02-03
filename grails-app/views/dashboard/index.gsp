@@ -18,8 +18,12 @@
                 <tr>
                     <td>${movie.name}</td>
                     <td>
-                        <a href="${movie.magnetLink}"><i class="glyphicon glyphicon-magnet"></i></a>
-                        <a href="${g.createLink(action: 'download', id: movie.id)}"><i class="glyphicon glyphicon-download"></i></a>
+                        <a href="${movie.magnetLink}" class="btn btn-default btn-xs">
+                            <i class="glyphicon glyphicon-magnet"></i>
+                        </a>
+                        <a href="${g.createLink(action: 'download', id: movie.id)}" class="btn btn-primary btn-xs">
+                            <i class="glyphicon glyphicon-download"></i>
+                        </a>
                     </td>
                 </tr>
                 </g:each>

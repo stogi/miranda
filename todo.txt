@@ -1,7 +1,7 @@
 Refactoring:
 
 Functionality:
-- Adding TV shows to watch and download.
+* Adding TV shows to watch and download.
 - Checking for new TV shows.
 - Admin authentication account.
 
