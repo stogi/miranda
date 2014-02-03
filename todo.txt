@@ -1,13 +1,16 @@
 Refactoring:
+- Add functional tests.
 
 Functionality:
-* Adding TV shows to watch and download.
+- Mark Torrent as downloaded.
+- Make TV Show name case insensitive.
 - Checking for new TV shows.
 - Admin authentication account.
 
 Go Live:
 
 Deployment Improvements:
+- Install Nginx.
 - Redirect miranda hostname to Tomcat7 root context.
 
 When HTPC is build:

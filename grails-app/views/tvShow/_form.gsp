@@ -18,7 +18,7 @@
                 <p ${error in FieldError ? "data-field-id=\"${error.field}\"" : ''}><g:message error="${error}"/></p>
             </g:eachError>
         </div>
-    </g:hasErrors>  
+    </g:hasErrors>
 
     <form action="${createLink(action: 'save', id: tvShow?.id)}" method="post" class="form-horizontal" role="form">
         <div class="form-group">
