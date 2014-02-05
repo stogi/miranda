@@ -4,16 +4,16 @@ import grails.test.mixin.TestFor
 import spock.lang.Specification
 import spock.lang.Unroll
 
-@TestFor(Torrent)
-class TorrentUnitSpec extends Specification {
+@TestFor(MovieTorrent)
+class MovieTorrentUnitSpec extends Specification {
 
     void setup() {
-        mockForConstraintsTests(Torrent)
+        mockForConstraintsTests(MovieTorrent)
     }
 
     void 'magnetLink can not be null'() {
         given:
-        def torrent = new Torrent()
+        def torrent = new MovieTorrent()
 
         expect:
         !torrent.validate()
@@ -24,7 +24,7 @@ class TorrentUnitSpec extends Specification {
     @Unroll
     void 'magnetLink can not be blank'() {
         given:
-        def torrent = new Torrent(magnetLink)
+        def torrent = new MovieTorrent(magnetLink)
 
         expect:
         !torrent.validate()
@@ -37,7 +37,7 @@ class TorrentUnitSpec extends Specification {
 
     void 'magnetLink contains dn (display name) field'() {
         given:
-        def torrent = new Torrent('magnet:url')
+        def torrent = new MovieTorrent('magnet:url')
 
         expect:
         !torrent.validate()
@@ -50,10 +50,10 @@ class TorrentUnitSpec extends Specification {
         def magnetLink = 'magnet:?xt=exactTopic&dn=displayName&xl=1'
 
         and:
-        new Torrent(magnetLink).save(flush: true)
+        new MovieTorrent(magnetLink).save(flush: true)
 
         and:
-        def torrent = new Torrent(magnetLink)
+        def torrent = new MovieTorrent(magnetLink)
 
         expect:
         !torrent.validate()
@@ -64,7 +64,7 @@ class TorrentUnitSpec extends Specification {
     @Unroll
     void 'sets name based on magnetLink dn (display name) field'() {
         given:
-        def torrent = new Torrent(magnetLink)
+        def torrent = new MovieTorrent(magnetLink)
 
         expect:
         torrent.name == expectedName

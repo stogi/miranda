@@ -1,11 +1,12 @@
 package com.stogiapps.miranda
 
 import grails.buildtestdata.mixin.Build
+import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 @TestFor(DashboardController)
-@Build(Torrent)
+@Build(MovieTorrent)
 class DashboardControllerUnitSpec extends Specification {
 
     TorrentService torrentService
@@ -18,9 +19,9 @@ class DashboardControllerUnitSpec extends Specification {
     void 'puts latest torrents in model'() {
         given:
         def movies = [
-            Torrent.build(),
-            Torrent.build(),
-            Torrent.build()
+            MovieTorrent.build(),
+            MovieTorrent.build(),
+            MovieTorrent.build()
         ]
 
         when:
@@ -32,7 +33,7 @@ class DashboardControllerUnitSpec extends Specification {
 
     void 'downloads torrent by id'() {
         given:
-        def torrent = Torrent.build()
+        def torrent = MovieTorrent.build()
 
         when:
         params.id = torrent.id
@@ -41,7 +42,7 @@ class DashboardControllerUnitSpec extends Specification {
         controller.download()
 
         then:
-        1 * torrentService.download(torrent)
+        1 * torrentService.download({ it.id == torrent.id && it instanceof Torrent })
 
         and:
         response.redirectedUrl == '/'

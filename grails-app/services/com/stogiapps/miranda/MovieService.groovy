@@ -2,8 +2,8 @@ package com.stogiapps.miranda
 
 class MovieService {
 
-    List<Torrent> findLatest() {
-        latestTorrents.findAll { Torrent torrent ->
+    List<MovieTorrent> findLatest() {
+        latestTorrents.findAll { MovieTorrent torrent ->
             torrent.save()
         }
     }
@@ -12,7 +12,7 @@ class MovieService {
         new TorrentzSearchPage(query: ['1080p', 'bluray', 'dts', 'publichd', 'size > 6g', 'size < 20g', 'added:1d'])
             .search()
             .collect { TorrentzSearchResultPage searchResultPage ->
-                new Torrent(searchResultPage.pirateBayPage.magnetLink)
+                new MovieTorrent(searchResultPage.pirateBayPage.magnetLink)
             }
     }
 

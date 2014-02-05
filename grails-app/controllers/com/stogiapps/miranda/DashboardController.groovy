@@ -5,11 +5,11 @@ class DashboardController {
     def torrentService
 
     def index() {
-        [movies: Torrent.list()]
+        [movies: MovieTorrent.list()]
     }
 
     def download(Long id) {
-        torrentService.download(Torrent.get(id))
+        torrentService.download(Torrent.findById(id))
         redirect(action: 'index')
     }
 
