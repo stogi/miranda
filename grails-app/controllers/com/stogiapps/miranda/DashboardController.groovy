@@ -5,7 +5,7 @@ class DashboardController {
     def torrentService
 
     def index() {
-        [movies: MovieTorrent.list()]
+        [movies: MovieTorrent.list(), tvShows: TvShowTorrent.list()]
     }
 
     def download(Long id) {

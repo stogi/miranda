@@ -7,8 +7,6 @@ grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
-grails.server.port.http = 34500
-
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
     //  compile: [maxMemory: 256, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
@@ -16,7 +14,7 @@ grails.project.fork = [
     // configure settings for the test-app JVM, uses the daemon by default
     test: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, daemon:true],
     // configure settings for the run-app JVM
-    run: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
+    run: false,
     // configure settings for the run-war JVM
     war: [maxMemory: 768, minMemory: 64, debug: false, maxPerm: 256, forkReserve:false],
     // configure settings for the Console UI JVM
@@ -54,6 +52,8 @@ grails.project.dependency.resolution = {
             excludes 'groovy'
         }
 
+        runtime 'org.postgresql:postgresql:9.3-1100-jdbc4'
+
         test 'co.freeside:betamax:1.1.2'
         test 'org.spockframework:spock-grails-support:0.7-groovy-2.0'
     }
@@ -62,10 +62,11 @@ grails.project.dependency.resolution = {
         build ':tomcat:7.0.50'
 
         compile ':build-test-data:2.0.10'
-        compile ':mongodb:1.3.3'
         compile ':scaffolding:2.0.1'
         compile ':webxml:1.4.1'
         compile ':quartz:1.0.1'
+
+        runtime ":hibernate:3.6.10.7"
 
         test(':spock:0.7') {
             exclude 'spock-grails-support'

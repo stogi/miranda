@@ -13,7 +13,7 @@ abstract class Torrent {
     }
 
     static constraints = {
-        magnetLink(blank: false, matches: DISPLAY_NAME_REGEXP, unique: true)
+        magnetLink(blank: false, matches: DISPLAY_NAME_REGEXP, maxSize: 1000, unique: true)
     }
 
     protected abstract transient String getQuality()

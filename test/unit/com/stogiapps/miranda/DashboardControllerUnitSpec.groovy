@@ -6,7 +6,7 @@ import grails.test.mixin.TestFor
 import spock.lang.Specification
 
 @TestFor(DashboardController)
-@Build(MovieTorrent)
+@Build([MovieTorrent, TvShowTorrent])
 class DashboardControllerUnitSpec extends Specification {
 
     TorrentService torrentService
@@ -24,11 +24,18 @@ class DashboardControllerUnitSpec extends Specification {
             MovieTorrent.build()
         ]
 
+        def tvShows = [
+            TvShowTorrent.build(),
+            TvShowTorrent.build(),
+            TvShowTorrent.build()
+        ]
+
         when:
         def model = controller.index()
 
         then:
         model.movies == movies
+        model.tvShows == tvShows
     }
 
     void 'downloads torrent by id'() {
