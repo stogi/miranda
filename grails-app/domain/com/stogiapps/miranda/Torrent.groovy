@@ -16,7 +16,28 @@ abstract class Torrent {
         magnetLink(blank: false, matches: DISPLAY_NAME_REGEXP, unique: true)
     }
 
-    protected abstract String extractNameFromMagnetLink()
+    protected abstract transient String getQuality()
+
+    protected String extractNameFromMagnetLink() {
+        String displayName = extractDisplayNameFromMagnetLink()
+        String name = null
+
+        if (displayName) {
+            def parts = displayName.split('\\.')
+
+            int index = 1
+            while (index < parts.size()) {
+                if (parts[index] == quality) {
+                    break
+                }
+                index++
+            }
+
+            name = parts[0..index - 1].join(' ')
+        }
+
+        name
+    }
 
     protected String extractDisplayNameFromMagnetLink() {
         String displayName = null

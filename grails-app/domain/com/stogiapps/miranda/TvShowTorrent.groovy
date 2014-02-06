@@ -1,14 +1,13 @@
 package com.stogiapps.miranda
 
-class MovieTorrent extends Torrent {
+class TvShowTorrent extends Torrent {
 
-    MovieTorrent(String magnetLink) {
+    TvShowTorrent(String magnetLink) {
         super(magnetLink)
     }
 
     @Override
     protected transient String getQuality() {
-        '1080p'
+        '720p'
     }
-
 }
