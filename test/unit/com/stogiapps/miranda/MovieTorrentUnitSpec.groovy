@@ -13,7 +13,7 @@ class MovieTorrentUnitSpec extends Specification {
 
     void 'magnetLink can not be null'() {
         given:
-        def torrent = new MovieTorrent()
+        def torrent = new MovieTorrent(null)
 
         expect:
         !torrent.validate()
@@ -70,11 +70,11 @@ class MovieTorrentUnitSpec extends Specification {
         torrent.name == expectedName
 
         where:
-        expectedName  | magnetLink
-        'Avengers'    | 'magnet:?xt=urn:btih:e382bea15e896a2ffd999d041a3e9171e9cbfd6e&dn=Avengers.2012.1080p.BluRay.DTS-HD.MA.7.1.x264-PublicHD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
-        'Escape Plan' | 'magnet:?xt=urn:btih:e382bea15e896a2ffd999d041a3e9171e9cbfd6e&dn=Escape.Plan.2013.1080p.BluRay.DTS-HD.MA.7.1.x264-PublicHD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
-        '2012'        | 'magnet:?xt=urn:btih:e382bea15e896a2ffd999d041a3e9171e9cbfd6e&dn=2012.2009.1080p.BluRay.DTS-HD.MA.7.1.x264-PublicHD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
-        '9'           | 'magnet:?xt=urn:btih:e382bea15e896a2ffd999d041a3e9171e9cbfd6e&dn=9.2010.1080p.BluRay.DTS-HD.MA.7.1.x264-PublicHD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
+        expectedName       | magnetLink
+        'Avengers 2012'    | 'magnet:?xt=urn:btih:e382bea15e896a2ffd999d041a3e9171e9cbfd6e&dn=Avengers.2012.1080p.BluRay.DTS-HD.MA.7.1.x264-PublicHD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
+        'Escape Plan 2013' | 'magnet:?xt=urn:btih:e382bea15e896a2ffd999d041a3e9171e9cbfd6e&dn=Escape.Plan.2013.1080p.BluRay.DTS-HD.MA.7.1.x264-PublicHD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
+        '2012 2009'        | 'magnet:?xt=urn:btih:e382bea15e896a2ffd999d041a3e9171e9cbfd6e&dn=2012.2009.1080p.BluRay.DTS-HD.MA.7.1.x264-PublicHD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
+        '9 2010'           | 'magnet:?xt=urn:btih:e382bea15e896a2ffd999d041a3e9171e9cbfd6e&dn=9.2010.1080p.BluRay.DTS-HD.MA.7.1.x264-PublicHD&tr=udp%3A%2F%2Ftracker.openbittorrent.com%3A80&tr=udp%3A%2F%2Ftracker.publicbt.com%3A80&tr=udp%3A%2F%2Ftracker.istole.it%3A6969&tr=udp%3A%2F%2Ftracker.ccc.de%3A80&tr=udp%3A%2F%2Fopen.demonii.com%3A1337'
     }
 
 }

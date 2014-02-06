@@ -16,7 +16,7 @@ class MovieTorrent extends Torrent {
 
             int index = 1
             while (index < parts.size()) {
-                if (isReleaseYear(parts[index])) {
+                if (parts[index] == '1080p') {
                     break
                 }
                 index++
@@ -26,10 +26,6 @@ class MovieTorrent extends Torrent {
         }
 
         name
-    }
-
-    private boolean isReleaseYear(String part) {
-        part.matches(/[\d]{4}/)
     }
 
 }
