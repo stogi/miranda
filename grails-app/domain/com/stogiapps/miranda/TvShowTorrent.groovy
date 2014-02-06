@@ -10,4 +10,5 @@ class TvShowTorrent extends Torrent {
     protected transient String getQuality() {
         '720p'
     }
+
 }
