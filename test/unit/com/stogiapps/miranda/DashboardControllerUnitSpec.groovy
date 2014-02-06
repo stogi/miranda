@@ -12,7 +12,7 @@ class DashboardControllerUnitSpec extends Specification {
     TorrentService torrentService
 
     void setup() {
-        torrentService = Mock(TorrentService)
+        torrentService = Mock()
         controller.torrentService = torrentService
     }
 

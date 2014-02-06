@@ -3,6 +3,7 @@ package com.stogiapps.miranda
 class FindLatestContentJob {
 
     MovieService movieService
+    TvShowService tvShowService
 
     static triggers = {
         cron name: 'findLatestContentTrigger', cronExpression: '0 0 * * * ?'
@@ -10,5 +11,6 @@ class FindLatestContentJob {
 
     def execute() {
         movieService.findLatest()
+        tvShowService.findLatest()
     }
 }
