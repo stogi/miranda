@@ -6,6 +6,7 @@ abstract class Torrent {
 
     String magnetLink
     String name
+    boolean downloaded = false
 
     Torrent(String magnetLink) {
         this.magnetLink = magnetLink

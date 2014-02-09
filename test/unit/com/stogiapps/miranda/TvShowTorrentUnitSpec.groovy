@@ -7,60 +7,6 @@ import spock.lang.Unroll
 @TestFor(TvShowTorrent)
 class TvShowTorrentUnitSpec extends Specification {
 
-    void setup() {
-        mockForConstraintsTests(TvShowTorrent)
-    }
-
-    void 'magnetLink can not be null'() {
-        given:
-        def torrent = new TvShowTorrent(null)
-
-        expect:
-        !torrent.validate()
-        torrent.errors.magnetLink == 'nullable'
-        torrent.errors.name == 'nullable'
-    }
-
-    @Unroll
-    void 'magnetLink can not be blank'() {
-        given:
-        def torrent = new TvShowTorrent(magnetLink)
-
-        expect:
-        !torrent.validate()
-        torrent.errors.magnetLink == 'blank'
-        torrent.errors.name == 'nullable'
-
-        where:
-        magnetLink << ['', ' ']
-    }
-
-    void 'magnetLink contains dn (display name) field'() {
-        given:
-        def torrent = new TvShowTorrent('magnet:url')
-
-        expect:
-        !torrent.validate()
-        torrent.errors.magnetLink == 'matches'
-        torrent.errors.name == 'nullable'
-    }
-
-    void 'magnetLink is unique'() {
-        given:
-        def magnetLink = 'magnet:?xt=exactTopic&dn=displayName&xl=1'
-
-        and:
-        new TvShowTorrent(magnetLink).save(flush: true)
-
-        and:
-        def torrent = new TvShowTorrent(magnetLink)
-
-        expect:
-        !torrent.validate()
-        torrent.errors.magnetLink == 'unique'
-        !torrent.errors.name
-    }
-
     @Unroll
     void 'sets name based on magnetLink dn (display name) field'() {
         given:

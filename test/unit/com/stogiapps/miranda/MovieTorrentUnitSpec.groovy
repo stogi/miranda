@@ -11,6 +11,14 @@ class MovieTorrentUnitSpec extends Specification {
         mockForConstraintsTests(MovieTorrent)
     }
 
+    void 'downloaded flag is false by default'() {
+        given:
+        def torrent = new MovieTorrent()
+
+        expect:
+        !torrent.downloaded
+    }
+
     void 'magnetLink can not be null'() {
         given:
         def torrent = new MovieTorrent(null)
