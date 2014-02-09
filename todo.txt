@@ -2,7 +2,6 @@ Refactoring:
 - Add functional tests.
 
 Functionality:
-* Checking for new TV shows.
 - Mark Torrent as downloaded.
 - Make TV Show name case insensitive.
 - Admin authentication account.
