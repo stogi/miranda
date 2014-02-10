@@ -14,6 +14,8 @@ class TorrentService {
 
         def token = api.get(path: '/gui/token.html')
         api.get(path: '/gui/', query: [action: 'add-url', token: token, s: torrent.magnetLink])
+
+        torrent.downloaded = true
     }
 
 }
