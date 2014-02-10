@@ -2,7 +2,9 @@ Refactoring:
 - Add functional tests.
 
 Functionality:
-* Mark Torrent as downloaded.
+- Automatically download tracked TV Shows if new episode becomes available.
+- Link Movies to IMDB.
+- Link TV Shows to IMDB.
 - Make TV Show name case insensitive.
 - Admin authentication account.
 
