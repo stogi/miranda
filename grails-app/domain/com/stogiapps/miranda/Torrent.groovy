@@ -1,5 +1,7 @@
 package com.stogiapps.miranda
 
+import org.joda.time.DateTime
+
 abstract class Torrent {
 
     static DISPLAY_NAME_REGEXP = /.*dn=([^&]+).*/
@@ -7,6 +9,9 @@ abstract class Torrent {
     String magnetLink
     String name
     boolean downloaded = false
+
+    DateTime dateCreated
+    DateTime lastUpdated
 
     Torrent(String magnetLink) {
         this.magnetLink = magnetLink

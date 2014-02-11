@@ -1,3 +1,9 @@
+import org.jadira.usertype.dateandtime.joda.PersistentDateTime
+import org.jadira.usertype.dateandtime.joda.PersistentLocalDate
+
+import org.joda.time.DateTime
+import org.joda.time.LocalDate
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -83,6 +89,12 @@ grails.exceptionresolver.params.exclude = ['password']
 
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
+
+grails.gorm.default.mapping = {
+    "user-type" type: PersistentDateTime, class: DateTime
+    "user-type" type: PersistentLocalDate, class: LocalDate
+    // … define as many other user type mappings as you need
+}
 
 grails.app.context = '/'
 

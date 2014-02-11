@@ -47,6 +47,8 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
+        compile 'joda-time:joda-time:2.3'
+        compile 'org.jadira.usertype:usertype.jodatime:1.9'
         compile 'org.jsoup:jsoup:1.7.3'
         compile('org.codehaus.groovy.modules.http-builder:http-builder:0.6') {
             excludes 'groovy'
@@ -62,6 +64,7 @@ grails.project.dependency.resolution = {
         build ':tomcat:7.0.50'
 
         compile ':build-test-data:2.0.10'
+        compile ':joda-time:1.4'
         compile ':scaffolding:2.0.1'
         compile ':webxml:1.4.1'
         compile ':quartz:1.0.1'
