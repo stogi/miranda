@@ -22,6 +22,12 @@ class FindLatestContentJobUnitSpec extends Specification {
         then:
         1 * movieService.findLatest()
         1 * tvShowService.findLatest()
+
+        then:
+        1 * tvShowService.downloadTracked()
+
+        then:
+        0 * _._
     }
 
 }

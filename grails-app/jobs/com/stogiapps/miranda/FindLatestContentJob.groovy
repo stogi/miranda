@@ -12,5 +12,6 @@ class FindLatestContentJob {
     def execute() {
         movieService.findLatest()
         tvShowService.findLatest()
+        tvShowService.downloadTracked()
     }
 }

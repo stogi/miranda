@@ -2,9 +2,24 @@ package com.stogiapps.miranda
 
 class TvShowService {
 
+    TorrentService torrentService
+
     List<TvShowTorrent> findLatest() {
         latestTorrents.findAll { TvShowTorrent torrent ->
             torrent.save()
+        }
+    }
+
+    void downloadTracked() {
+        def tvShows = TvShow.list()
+        def torrents = TvShowTorrent.findAllByDownloaded(false)
+
+        torrents.each { Torrent torrent ->
+            tvShows.each { TvShow tvShow ->
+                if (torrent.name.startsWith(tvShow.name)) {
+                    torrentService.download(torrent)
+                }
+            }
         }
     }
 

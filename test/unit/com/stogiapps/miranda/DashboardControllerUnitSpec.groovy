@@ -12,8 +12,7 @@ class DashboardControllerUnitSpec extends Specification {
     TorrentService torrentService
 
     void setup() {
-        torrentService = Mock()
-        controller.torrentService = torrentService
+        controller.torrentService = torrentService = Mock()
     }
 
     void 'puts latest torrents in model'() {
@@ -49,10 +48,13 @@ class DashboardControllerUnitSpec extends Specification {
         controller.download()
 
         then:
-        1 * torrentService.download({ it.id == torrent.id && it instanceof Torrent })
+        response.redirectedUrl == '/'
 
         and:
-        response.redirectedUrl == '/'
+        1 * torrentService.download({ it.id == torrent.id && it instanceof Torrent })
+
+        then:
+        0 * _._
     }
 
 }

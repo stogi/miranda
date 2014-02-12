@@ -10,7 +10,7 @@ import spock.lang.Specification
 
 @TestFor(TvShowService)
 @Build(TvShowTorrent)
-class TvShowServiceUnitSpec extends Specification {
+class TvShowServiceFindLatestUnitSpec extends Specification {
 
     @Rule
     Recorder recorder = new Recorder()
