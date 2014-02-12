@@ -2,11 +2,12 @@ Refactoring:
 - Add functional tests.
 
 Functionality:
-* Automatically download tracked TV Shows if new episode becomes available.
-- Link Movies to IMDB.
-- Link TV Shows to IMDB.
 - Make TV Show name case insensitive.
 - Admin authentication account.
+- Link Movies to IMDB.
+- Link TV Shows to IMDB.
+- Manage front-end dependencies with Bower.
+- Migrate front-end to AngularJS.
 
 Go Live:
 
