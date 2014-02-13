@@ -2,7 +2,7 @@ Refactoring:
 - Add functional tests.
 
 Functionality:
-- Make TV Show name case insensitive.
+* Make TV Show name case insensitive.
 - Admin authentication account.
 - Link Movies to IMDB.
 - Link TV Shows to IMDB.
