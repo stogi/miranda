@@ -5,13 +5,13 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 @TestFor(TvShow)
+@Unroll
 class TvShowUnitSpec extends Specification {
 
     void setup() {
         mockForConstraintsTests(TvShow)
     }
 
-    @Unroll
     void 'name can not be null'() {
         given:
         def tvShow = new TvShow()
@@ -26,17 +26,25 @@ class TvShowUnitSpec extends Specification {
 
     void 'name is unique'() {
         given:
-        def name = 'True Detective'
-
-        and:
         new TvShow(name: name).save(flush: true)
 
         and:
-        def tvShow = new TvShow(name: name)
+        def tvShow = new TvShow(name: 'True Detective')
 
         expect:
         !tvShow.validate()
         tvShow.errors.name == 'unique'
+
+        where:
+        name << ['True Detective', 'true detective', 'TRUE DETECTIVE']
+    }
+
+    void 'updates without error'() {
+        given:
+        def tvShow = new TvShow(name: 'True Detective').save(flush: true)
+
+        expect:
+        tvShow.validate()
     }
 
 }

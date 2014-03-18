@@ -5,7 +5,14 @@ class TvShow {
     String name
 
     static constraints = {
-        name(unique: true)
+        name(validator: { value, object ->
+            def error
+            def existing = TvShow.findByNameIlike(value)
+            if (existing && existing.id != object.id) {
+                error = ['unique']
+            }
+            error
+        })
     }
 
 }
